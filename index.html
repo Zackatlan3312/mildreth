@@ -179,12 +179,13 @@
   #mensaje::before{
     content:'';
     position:absolute;
-    inset:-62% -16%;
-    background:radial-gradient(ellipse at center,
-      rgba(26,11,2,.60) 0%,
-      rgba(26,11,2,.46) 38%,
-      rgba(26,11,2,.22) 62%,
-      rgba(26,11,2,0) 80%);
+    inset:-70% -22%;
+    background:radial-gradient(ellipse closest-side at center,
+      rgba(26,11,2,.58) 0%,
+      rgba(26,11,2,.50) 30%,
+      rgba(26,11,2,.30) 56%,
+      rgba(26,11,2,.10) 78%,
+      rgba(26,11,2,0) 100%);
     pointer-events:none;
   }
   #texto, #cursor{ position:relative; }
@@ -2095,6 +2096,7 @@ function mostrar(id, v){ $(id).classList.toggle('visible', v); }
 
 let tempEscritura = null;
 function escribirMensaje(){
+  clearTimeout(tempEscritura);          /* nunca dos maquinas de escribir a la vez */
   const letras = Array.from(CONFIG.mensajeFinal);
   elTexto.textContent = '';
   elCursor.classList.remove('apagado');
